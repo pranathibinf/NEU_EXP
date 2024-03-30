@@ -35,9 +35,12 @@ Target (y1 or y2) is transformed using a logarithmic function to handle skewness
 Python 3.6+, Pandas, NumPy, scikit-learn, XGBoost, statsmodels, requests
 
 ## Data Preprocessing
-1) Data Downloading: Automated from the specified URL.
-2) Feature Scaling: Custom scaling function applied to x1.
-3) Target Transformation: Custom scaling applied to y1/y2.
+1) Data Downloading: The dataset is automatically fetched from a specified URL. Ensure your environment can access the internet to download the dataset successfully.
+
+2) Feature Scaling
+x1 Feature Normalization: A custom scaling function is applied to the x1 feature to normalize its values, aiming to improve model performance by ensuring that this feature is on a scale compatible with other variables in the dataset. Adaptability to Other Features (x2, x3, x4): The scaling approach used for x1 can be adapted and applied to x2, x3, and x4, depending on their distribution and how they influence the model. Each feature might require a unique scaling method (e.g., standardization, min-max scaling) to ensure the model accurately interprets the data.
+
+4) Custom Transformation for Target Variable (y1): The target variable y1 undergoes a custom transformation to enhance the model's ability to learn from the data. This step is tailored to address specific challenges such as skewness in the target distribution, aiming to improve overall prediction accuracy.
 
 ## Model Construction
 Choice of Target: The model uses y1.

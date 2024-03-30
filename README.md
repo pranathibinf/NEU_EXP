@@ -52,7 +52,29 @@ Data Splitting: The dataset is divided into training, validation, and testing se
 XGBoost Regression: Constructs a boosted decision tree model with careful selection and tuning of hyperparameters for optimal performance.
 
 ## Hyperparameter Tuning
+The model's performance has been optimized through careful selection of hyperparameters in the XGBoost algorithm. Here's an overview of the chosen parameters and the rationale behind each choice:
 
-## Evaluation Metrics
+1) max_depth: 9
+Controls the maximum depth of trees. A depth of 9 was selected to complexly model the relationships in the data while preventing the model from becoming too deep, which could lead to overfitting.
+
+2) eta: 0.1 (Learning Rate)
+The learning rate was set at 0.1 to balance the speed of convergence with the model's ability to navigate the solution space effectively, avoiding overshooting the optimal solution.
+
+3) min_child_weight: 10
+This parameter helps control overfitting by making the algorithm more conservative. A higher value means the model will be more cautious in making splits that only add significant value, helping to ensure that the model generalizes well.
+
+4) gamma: 0 (Minimum Loss Reduction)
+Set to 0 for this model, indicating that no specific gain is required to make a split. This setting allows for flexibility in growing the trees, especially in the early phases of tuning and model exploration.
+
+5) colsample_bytree: 1.0
+Indicates that all features are used for each tree, maximizing the potential for each tree to learn from the entirety of the feature set. This choice supports comprehensive model learning from the data.
+
+6) objective: reg:squarederror
+Specifies the regression objective for the XGBoost model, targeting minimization of squared errors, which is suitable for continuous outcome prediction.
+
+7) eval_metric: rmse (Root Mean Square Error)
+Chosen as the evaluation metric to quantify the model's prediction accuracy, focusing on minimizing the average magnitude of the prediction errors.
+
+These hyperparameters were selected based on their contributions to model performance, as evaluated through cross-validation and testing. The goal was to achieve a balance between learning efficiency, model complexity, and the ability to generalize to unseen data.## Evaluation Metrics
 Model performance is evaluated using RMSE, MAE, and R-squared on the testing set to assess accuracy and predictive capability.
 

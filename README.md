@@ -35,20 +35,14 @@ Target (y1 or y2) is transformed using a logarithmic function to handle skewness
 Python 3.6+, Pandas, NumPy, scikit-learn, XGBoost, statsmodels, requests
 
 ## Data Preprocessing
-1) Data Downloading: The dataset is automatically fetched from a specified URL. Ensure your environment can access the internet to download the dataset successfully.
-
-2) Feature Scaling
-x1 Feature Normalization: A custom scaling function is applied to the x1 feature to normalize its values, aiming to improve model performance by ensuring that this feature is on a scale compatible with other variables in the dataset. Adaptability to Other Features (x2, x3, x4): The scaling approach used for x1 can be adapted and applied to x2, x3, and x4, depending on their distribution and how they influence the model. Each feature might require a unique scaling method (e.g., standardization, min-max scaling) to ensure the model accurately interprets the data.
-
-4) Custom Transformation for Target Variable (y1): The target variable y1 undergoes a custom transformation to enhance the model's ability to learn from the data. This step is tailored to address specific challenges such as skewness in the target distribution, aiming to improve overall prediction accuracy.
+1) Data Downloading: Automatically fetches and loads the dataset from a specified URL using requests, with support for gzip compression.
+2) Feature Scaling: Applies a custom logarithmic scaling function to the x1 feature and a logarithmic transformation to the y1 target variable to normalize their scales and improve model performance.
+3)  Dataset Splitting: The dataset was divided into 70% training, 15% validation, and 15% testing splits. This allocation was chosen to provide a large enough training set for the complex model to learn effectively while ensuring ample and equal data for both validation and testing to robustly evaluate model performance.
 
 ## Model Construction
 Choice of Target: The model uses y1.
 Data Splitting: The dataset is divided into training, validation, and testing sets, with specific splits chosen to balance training data availability and model validation/testing accuracy.
 XGBoost Regression: Constructs a boosted decision tree model with careful selection and tuning of hyperparameters for optimal performance.
-
-## Data Splitting Strategy
-The dataset was divided into 70% training, 15% validation, and 15% testing splits. This allocation was chosen to provide a large enough training set for the complex model to learn effectively while ensuring ample and equal data for both validation and testing to robustly evaluate model performance.
 
 ## Hyperparameter Tuning
 The model's performance has been optimized through careful selection of hyperparameters in the XGBoost algorithm. Here's an overview of the chosen parameters and the rationale behind each choice:

@@ -73,3 +73,8 @@ Why I chose, what I Chose: These hyperparameters were selected based on their co
 ## Evaluation Metrics
 Model performance is evaluated using RMSE, MAE, and R-squared on the testing set to assess accuracy and predictive capability.
 
+## How to run:
+1) Clone the git hub folder (2) open terminal and change the working directory to NEU_EXP (3) Execute `pip install -r requirements.txt` (4) Execute `python3 task2.py`
+
+## Files
+task2.ipynb (python notebook), task2.py

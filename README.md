@@ -5,10 +5,7 @@ Task 1 involves downloading, parsing, and analyzing comprehensive gene annotatio
 The dataset is available at https://www.gencodegenes.org/human/ use GTF of Comprehensive gene annotation for the primary assembly (chromosomes and scaffolding). Use release Release 45 (GRCh38.p14)
 
 ## Dependencies
-R (version 3.6.0 or higher recommended)
-Bioconductor packages:
-rtracklayer
-GenomicFeatures
+R (version 3.6.0 or higher recommended), Bioconductor packages: rtracklayer, GenomicFeatures
 
 ## Running the Code
 1) Download and Parse GTF File: The script starts by downloading the GTF file from the GENCODE website (Release 45). It then loads this file and parses it to create a TxDb object.
@@ -20,6 +17,8 @@ GenomicFeatures
 2) A .rds file named transcripts_to_genes.rds containing the S4 object with transcripts-to-gene mappings.
 3) Console output detailing the mean, minimum, and maximum number of transcripts per gene.
 
+## Significance
+This project contributes to the genomic research community by providing a reproducible and transparent methodology for analyzing gene annotations from the GENCODE database. Through statistical analysis and visualization, researchers can derive valuable insights into the genetic architecture and transcriptional complexity of the human genome, facilitating further genomic discoveries and applications.
 
 # Task 2: Boosted Decision Tree Regression with XGBoost
 Task 2 involves downloading the dataset, preprocessing its features and target variables, and constructing a boosted decision tree model using XGBoost for a regression task in Python. The dataset contains 1 million samples with 4D inputs and 2D outputs, from which either y1 or y2 is chosen for modeling.
@@ -33,13 +32,7 @@ Features (x1) are scaled using a logarithmic function to normalize their range a
 Target (y1 or y2) is transformed using a logarithmic function to handle skewness and enhance model accuracy.
 
 ## Requirements
-Python 3.6+
-Pandas
-NumPy
-scikit-learn
-XGBoost
-statsmodels
-requests
+Python 3.6+, Pandas, NumPy, scikit-learn, XGBoost, statsmodels, requests
 
 ## Data Preprocessing
 1) Data Downloading: Automated from the specified URL.
@@ -50,6 +43,9 @@ requests
 Choice of Target: The model uses y1.
 Data Splitting: The dataset is divided into training, validation, and testing sets, with specific splits chosen to balance training data availability and model validation/testing accuracy.
 XGBoost Regression: Constructs a boosted decision tree model with careful selection and tuning of hyperparameters for optimal performance.
+
+## Data Splitting Strategy
+The dataset was divided into 70% training, 15% validation, and 15% testing splits. This allocation was chosen to provide a large enough training set for the complex model to learn effectively while ensuring ample and equal data for both validation and testing to robustly evaluate model performance.
 
 ## Hyperparameter Tuning
 The model's performance has been optimized through careful selection of hyperparameters in the XGBoost algorithm. Here's an overview of the chosen parameters and the rationale behind each choice:
@@ -75,6 +71,6 @@ Specifies the regression objective for the XGBoost model, targeting minimization
 7) eval_metric: rmse (Root Mean Square Error)
 Chosen as the evaluation metric to quantify the model's prediction accuracy, focusing on minimizing the average magnitude of the prediction errors.
 
-These hyperparameters were selected based on their contributions to model performance, as evaluated through cross-validation and testing. The goal was to achieve a balance between learning efficiency, model complexity, and the ability to generalize to unseen data.## Evaluation Metrics
+Why I chose, what I Chose: These hyperparameters were selected based on their contributions to model performance, as evaluated through cross-validation and testing. The goal was to achieve a balance between learning efficiency, model complexity, and the ability to generalize to unseen data.## Evaluation Metrics
 Model performance is evaluated using RMSE, MAE, and R-squared on the testing set to assess accuracy and predictive capability.
 

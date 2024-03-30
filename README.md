@@ -68,6 +68,8 @@ Specifies the regression objective for the XGBoost model, targeting minimization
 7) eval_metric: rmse (Root Mean Square Error)
 Chosen as the evaluation metric to quantify the model's prediction accuracy, focusing on minimizing the average magnitude of the prediction errors.
 
-Why I chose, what I Chose: These hyperparameters were selected based on their contributions to model performance, as evaluated through cross-validation and testing. The goal was to achieve a balance between learning efficiency, model complexity, and the ability to generalize to unseen data.## Evaluation Metrics
+Why I chose, what I Chose: These hyperparameters were selected based on their contributions to model performance, as evaluated through cross-validation and testing. The goal was to achieve a balance between learning efficiency, model complexity, and the ability to generalize to unseen data.
+
+## Evaluation Metrics
 Model performance is evaluated using RMSE, MAE, and R-squared on the testing set to assess accuracy and predictive capability.
 

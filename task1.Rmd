@@ -1,0 +1,90 @@
+---
+title: "Task 1"
+author: "Pranathi Limmala"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Load required packages
+library(rtracklayer)
+library(GenomicFeatures)
+```
+
+# Function to download the GTF file
+```{r}
+# Function to download the GTF file
+downloadGTF <- function(url, destfile) {
+  download.file(url, des_file, method="libcurl")
+}
+```
+
+# Data loading and exploration
+```{r, echo=FALSE, warning=FALSE}
+# URL for the GTF file (Release 45, comprehensive gene annotation for the primary assembly)
+gtf_url <- "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_45/gencode.v45.primary_assembly.annotation.gtf.gz"
+des_file <- "/Users/pranathilimmala/Documents/NEU_EXP/gencode.v45.primary_assembly.annotation.gtf.gz"
+
+options(timeout=300)  # Sets the timeout to 300 seconds (5 minutes)
+downloadGTF(gtf_url, des_file)
+
+# load the GTF file
+gtf_file <- des_file # Use the downloaded file
+
+# Load the GTF file
+gtf_data <- import(gtf_file)
+
+# Create a TxDb object
+txdb <- makeTxDbFromGRanges(gtf_data)
+```
+
+
+# Mapping transcripts to genes and saving .rds file
+```{r}
+# Get mappings of transcripts to genes
+transcripts_mapped <- transcriptsBy(txdb, by = "gene")
+
+# Compute the number of transcripts for each gene
+transcript_counts <- sapply(transcripts_mapped, length)
+
+# Compute mean, minimum, and maximum number of transcripts per gene
+mean_transcripts <- mean(transcript_counts)
+min_transcripts <- min(transcript_counts)
+max_transcripts <- max(transcript_counts)
+
+# Print the statistics
+cat("Mean number of transcripts per gene:", mean_transcripts, "\n")
+cat("Minimum number of transcripts per gene:", min_transcripts, "\n")
+cat("Maximum number of transcripts per gene:", max_transcripts, "\n")
+
+# Create the histogram
+hist(transcript_counts, breaks = 50, main = "Histogram of Number of Transcripts per gene", 
+     xlab = "Number of Transcripts", ylab = "Number of Genes", col = "skyblue", border = "white")
+
+# Add labels for clarity
+mtext("Distribution of Transcripts Across Genes", side = 3, line = 0.5, outer = TRUE, cex = 1.2)
+
+# Extract gene information
+gene_info <- genes(txdb)
+
+# Get the number of genes
+num_genes <- length(gene_info)
+
+# Print the number of genes
+cat("Number of genes in the dataset:", num_genes, "\n")
+
+# Create a bar plot (scatter plot is plotted for large datasets generally and hence including here)
+if (length(transcript_counts) <= 100) {
+  barplot(transcript_counts, main = "Number of Transcripts per gene", 
+          ylab = "Number of Transcripts", xlab = "Genes", 
+          cex.names = 0.5, las = 2)
+} else {
+  # For large datasets, a scatter plot is more practical
+  plot(transcript_counts, pch = 19, xlab = "Gene Index", ylab = "Number of Transcripts", 
+       main = "Scatter Plot of Transcripts per Gene")
+}
+
+# Save the S4 object to an .rds file
+saveRDS(transcript_counts, file = "transcripts_to_genes.rds")
+```

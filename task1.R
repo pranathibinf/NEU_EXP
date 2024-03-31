@@ -10,7 +10,7 @@ downloadGTF <- function(url, destfile) {
 
 # URL for the GTF file (Release 45, comprehensive gene annotation for the primary assembly)
 gtf_url <- "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_45/gencode.v45.primary_assembly.annotation.gtf.gz"
-des_file <- "/Users/pranathilimmala/Documents/NEU_EXP/gencode.v45.primary_assembly.annotation.gtf.gz"
+des_file <- "gencode.v45.primary_assembly.annotation.gtf.gz"
 
 options(timeout=300)  # Sets the timeout to 300 seconds (5 minutes)
 downloadGTF(gtf_url, des_file)

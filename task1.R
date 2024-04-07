@@ -3,7 +3,7 @@ library(rtracklayer)
 library(GenomicFeatures)
 
 # Function to download the GTF file
-downloadGTF <- function(url, destfile) {
+downloadGTF <- function(url, des_file) {
   download.file(url, des_file, method="libcurl")
 }
 
